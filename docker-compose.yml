@@ -1,0 +1,28 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api_java
+    env_file:
+      - .env
+    volumes:
+      - ./src:/app/src
+    ports:
+      - "8080:8080"
+      - "35729:35729"
+
+  db:
+    container_name: postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: graphql_api
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:

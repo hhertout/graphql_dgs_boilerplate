@@ -1,0 +1,23 @@
+type Show {
+    title: String
+    releaseYear: Int
+}
+
+input CreateShowInput {
+    title: String
+    releaseYear: Int
+}
+
+type DeleteShowResult {
+    success: Boolean
+    message: String
+}
+
+type Query {
+    shows(titleFilter: String): [Show]
+}
+
+type Mutation {
+    createShow(showInput: CreateShowInput): Show
+    deleteShow(title: String): DeleteShowResult
+}

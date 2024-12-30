@@ -1,4 +1,4 @@
-package dgs.example.demo.domain.valueobject;
+package dgs.example.demo.application.dtos;
 
 public record DeleteShowResult(boolean success, String message) {
 }

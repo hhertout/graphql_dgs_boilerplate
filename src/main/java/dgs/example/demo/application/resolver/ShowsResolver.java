@@ -1,11 +1,11 @@
-package dgs.example.demo.domain.resolver;
+package dgs.example.demo.application.resolver;
 
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
-import dgs.example.demo.domain.valueobject.CreateShowInput;
-import dgs.example.demo.domain.valueobject.DeleteShowResult;
+import dgs.example.demo.application.dtos.CreateShowInput;
+import dgs.example.demo.application.dtos.DeleteShowResult;
 import dgs.example.demo.infra.entity.Show;
 import dgs.example.demo.infra.repository.ShowRepository;
 import dgs.example.demo.shared.exception.ServerException;
@@ -26,7 +26,7 @@ public class ShowsResolver {
     @DgsQuery
     public List<Show> shows(@InputArgument String titleFilter, DataFetchingEnvironment dfe) {
         Guard.checkAuthorization(dfe, Role.Admin);
-        
+
         try {
             if (titleFilter != null && !titleFilter.isBlank()) {
                 return showRepository.findByTitleContaining(titleFilter);

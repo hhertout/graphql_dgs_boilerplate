@@ -1,4 +1,4 @@
-package dgs.example.demo.domain.valueobject;
+package dgs.example.demo.application.dtos;
 
 public record CreateShowInput(String title, int releaseYear) {
 }

@@ -20,7 +20,7 @@ jobs:
       PG_PORT: 5432
       PG_USER: postgres
       PG_PASSWORD: postgres
-      PG_DB: graphql_api
+      DB_NAME: graphql_api
 
     services:
       db:
@@ -52,11 +52,6 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
-
-      - name: Source .env.test to handle db connexion
-        run: source .env.test
-      - name: Override PG_HOST variable
-        run: export PG_HOST=db
       - name: Build with Gradle Wrapper
         run: ./gradlew build
 

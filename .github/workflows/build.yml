@@ -9,9 +9,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
   pull_request:
-    branches: ["main"]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -21,6 +21,15 @@ jobs:
       PG_USER: postgres
       PG_PASSWORD: postgres
       DB_NAME: graphql_api
+      ####### SECURITY CONFIGURATION #########
+      API_KEY: azertyuiop
+      ###### SPRING CONFIGURATION ###########
+      SPRING_DEV_TOOL: true
+      SPRING_LOGGING_LEVEL_ROOT: warn
+      SPRING_LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB: debug
+      SPRING_LOGGING_LEVEL_ORG_HIBERNATE: warn
+      SPRING_JPA_SHOW_SQL: true
+      SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: true
 
     services:
       db:

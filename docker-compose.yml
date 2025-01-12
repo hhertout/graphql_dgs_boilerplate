@@ -2,10 +2,17 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: prod.dockerfile
     container_name: api_java
-    env_file:
-      - .env
+    #env_file:
+    # - .env
+    environment:
+      API_KEY: azertyuiop
+      PG_HOST: db
+      PG_PORT: 5432
+      PG_USER: postgres
+      PG_PASSWORD: postgres
+      DB_NAME: graphql_api
     volumes:
       - ./src:/app/src
     ports:

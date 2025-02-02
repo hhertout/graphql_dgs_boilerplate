@@ -28,8 +28,8 @@ public class GraphqlContextBuilder implements DgsCustomContextBuilderWithRequest
 
             String authHeader = headers.getFirst("authorization");
             return new GraphqlContext(Optional.ofNullable(authHeader));
+        } else {
+            throw new ForbiddenException("INVALID OPERATION");
         }
-
-        return null;
     }
 }

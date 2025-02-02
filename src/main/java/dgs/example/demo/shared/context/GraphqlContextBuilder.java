@@ -2,7 +2,7 @@ package dgs.example.demo.shared.context;
 
 import com.netflix.graphql.dgs.context.DgsCustomContextBuilderWithRequest;
 import dgs.example.demo.shared.exception.ForbiddenException;
-import org.jetbrains.annotations.Nullable;
+import jakarta.annotation.Nullable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.WebRequest;

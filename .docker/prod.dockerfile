@@ -2,12 +2,12 @@ FROM eclipse-temurin:23-jdk-alpine AS builder
 
 WORKDIR /app
 
-COPY build.gradle settings.gradle gradlew /app/
-COPY gradle /app/gradle/
+COPY ../build.gradle settings.gradle gradlew /app/
+COPY ../gradle /app/gradle/
 
 RUN ./gradlew dependencies --no-daemon || true
 
-COPY . /app
+COPY .. /app
 
 RUN ./gradlew clean build -x test --no-daemon
 

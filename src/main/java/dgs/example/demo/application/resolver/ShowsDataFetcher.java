@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Optional;
 
 @DgsComponent
-public class ShowsResolver {
+public class ShowsDataFetcher {
 
-    private static final Logger log = LoggerFactory.getLogger(ShowsResolver.class);
+    private static final Logger log = LoggerFactory.getLogger(ShowsDataFetcher.class);
     @Autowired
     private ShowRepository showRepository;
 
@@ -32,8 +32,7 @@ public class ShowsResolver {
     public List<Show> shows(@InputArgument String titleFilter, DataFetchingEnvironment dfe) {
 
         GraphqlContext ctx = DgsContext.getCustomContext(dfe);
-        log.debug(String.valueOf(ctx.authorizationHeader()));
-        Guard.checkAuthorization(ctx.authorizationHeader(), Role.Admin);
+        Guard.checkAuthorization(ctx.authorizationHeader(), Role.Viewer, Role.Admin);
 
         try {
             if (titleFilter != null && !titleFilter.isBlank()) {

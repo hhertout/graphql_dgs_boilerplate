@@ -19,7 +19,7 @@ repositories {
 }
 
 ext {
-    set('netflixDgsVersion', "9.2.2")
+    set('netflixDgsVersion', "10.0.1")
 }
 
 dependencies {
@@ -29,6 +29,7 @@ dependencies {
     implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'com.netflix.graphql.dgs:dgs-starter-test'
     testImplementation 'com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
@@ -53,6 +54,6 @@ bootRun {
     ]
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
 }

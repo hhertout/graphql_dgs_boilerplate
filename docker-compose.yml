@@ -2,10 +2,10 @@ services:
   api:
     build:
       context: .
-      dockerfile: prod.dockerfile
+      dockerfile: .docker/dev.dockerfile
     container_name: api_java
-    #env_file:
-    # - .env
+    env_file:
+      - .env
     environment:
       API_KEY: azertyuiop
       PG_HOST: db
@@ -32,5 +32,19 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
 
+  db_test:
+    container_name: test_postgres
+    image: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: graphql_api
+
+    volumes:
+      - test_postgres:/var/lib/postgresql/data
+
 volumes:
   postgres:
+  test_postgres:

@@ -8,9 +8,9 @@ COPY build.gradle settings.gradle /app/
 
 RUN ./gradlew dependencies || true
 
-COPY . /app
+COPY .. /app
 
-COPY ./.docker/entrypoint.sh .
+COPY .docker/entrypoint.sh .
 RUN chmod +x entrypoint.sh
 
 EXPOSE 8080

@@ -5,8 +5,8 @@ import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
 import com.netflix.graphql.dgs.context.DgsContext;
-import dgs.example.demo.application.dtos.CreateShowInput;
-import dgs.example.demo.application.dtos.DeleteShowResult;
+import dgs.example.demo.codegen.types.CreateShowInput;
+import dgs.example.demo.codegen.types.DeleteShowResult;
 import dgs.example.demo.infra.entity.Show;
 import dgs.example.demo.infra.repository.ShowRepository;
 import dgs.example.demo.shared.context.GraphqlContext;
@@ -49,8 +49,8 @@ public class ShowsDataFetcher {
     public Show createShow(@InputArgument CreateShowInput showInput) {
         try {
             Show newShow = new Show();
-            newShow.setTitle(showInput.title());
-            newShow.setReleaseYear(showInput.releaseYear());
+            newShow.setTitle(showInput.getTitle());
+            newShow.setReleaseYear(showInput.getReleaseYear());
 
             Show result = showRepository.save(newShow);
             System.out.println(result);

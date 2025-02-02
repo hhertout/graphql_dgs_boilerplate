@@ -11,9 +11,11 @@ COPY .. /app
 
 RUN ./gradlew clean build -x test --no-daemon
 
-FROM eclipse-temurin:23-jre-alpine
+FROM eclipse-temurin:23.0.2_7-jre-alpine-3.21
 
 WORKDIR /app
+
+RUN addgroup -S java && adduser -S java -G java
 
 COPY --from=builder /app/build/libs/*.jar app.jar
 
@@ -29,5 +31,7 @@ ENV SPRING_JPA_SHOW_SQL=false
 ENV SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=false
 
 EXPOSE 8080
+
+USER java
 
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]

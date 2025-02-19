@@ -6,6 +6,6 @@
 ## Building
 
 ```bash
-source .env.test
+export $(grep -v '^#' .env.test | xargs)
 ./gradlew build
 ```

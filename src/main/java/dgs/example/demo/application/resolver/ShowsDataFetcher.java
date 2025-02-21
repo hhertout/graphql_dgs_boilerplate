@@ -25,6 +25,7 @@ import java.util.Optional;
 public class ShowsDataFetcher {
 
     private static final Logger log = LoggerFactory.getLogger(ShowsDataFetcher.class);
+    
     @Autowired
     private ShowRepository showRepository;
 

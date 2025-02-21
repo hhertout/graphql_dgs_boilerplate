@@ -1,14 +1,19 @@
-FROM eclipse-temurin:23-jdk
+FROM eclipse-temurin:23.0.2_7-jdk-alpine
 
-RUN apt-get update && apt-get install libinotifytools0 inotify-tools
+RUN apk add --no-cache inotify-tools
 
 WORKDIR /app
 
-COPY build.gradle settings.gradle /app/
+COPY gradle gradle
+COPY gradlew gradlew
+COPY settings.gradle settings.gradle
+COPY build.gradle build.gradle
 
-RUN ./gradlew dependencies || true
+RUN ./gradlew dependencies
 
-COPY .. /app
+COPY . .
+
+RUN ./gradlew build -x test
 
 COPY .docker/entrypoint.sh .
 RUN chmod +x entrypoint.sh

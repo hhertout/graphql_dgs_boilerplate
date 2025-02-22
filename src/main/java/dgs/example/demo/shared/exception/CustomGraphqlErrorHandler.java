@@ -26,7 +26,7 @@ public class CustomGraphqlErrorHandler implements DataFetcherExceptionHandler {
     public CompletableFuture<DataFetcherExceptionHandlerResult> handleException(DataFetcherExceptionHandlerParameters handlerParameters) {
         if (handlerParameters.getException() instanceof BadRequestException) {
             Map<String, Object> debugInfo = new HashMap<>();
-            debugInfo.put("error", "invalid user entry");
+            debugInfo.put("error", ((ServerException) handlerParameters.getException()).getDebugMessage());
 
             GraphQLError graphqlError = TypedGraphQLError.newInternalErrorBuilder()
                     .message(handlerParameters.getException().getMessage())
@@ -41,7 +41,7 @@ public class CustomGraphqlErrorHandler implements DataFetcherExceptionHandler {
             return CompletableFuture.completedFuture(result);
         } else if (handlerParameters.getException() instanceof ServerException) {
             Map<String, Object> debugInfo = new HashMap<>();
-            debugInfo.put("error", "server error");
+            debugInfo.put("error", ((ServerException) handlerParameters.getException()).getDebugMessage());
 
             GraphQLError graphqlError = TypedGraphQLError.newInternalErrorBuilder()
                     .message(handlerParameters.getException().getMessage())
@@ -56,7 +56,7 @@ public class CustomGraphqlErrorHandler implements DataFetcherExceptionHandler {
             return CompletableFuture.completedFuture(result);
         } else if (handlerParameters.getException() instanceof UnauthorizedException) {
             Map<String, Object> debugInfo = new HashMap<>();
-            debugInfo.put("error", "you are not authorized to see this content");
+            debugInfo.put("error", ((ServerException) handlerParameters.getException()).getDebugMessage());
 
             GraphQLError graphqlError = TypedGraphQLError.newInternalErrorBuilder()
                     .message(handlerParameters.getException().getMessage())

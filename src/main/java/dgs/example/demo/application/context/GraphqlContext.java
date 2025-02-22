@@ -1,4 +1,4 @@
-package dgs.example.demo.shared.context;
+package dgs.example.demo.application.context;
 
 import java.util.Optional;
 

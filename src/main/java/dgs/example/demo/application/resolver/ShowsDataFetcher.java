@@ -5,11 +5,11 @@ import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
 import com.netflix.graphql.dgs.context.DgsContext;
+import dgs.example.demo.application.context.GraphqlContext;
 import dgs.example.demo.codegen.types.CreateShowInput;
 import dgs.example.demo.codegen.types.DeleteShowResult;
 import dgs.example.demo.infra.entity.Show;
 import dgs.example.demo.infra.repository.ShowRepository;
-import dgs.example.demo.shared.context.GraphqlContext;
 import dgs.example.demo.shared.exception.ServerException;
 import dgs.example.demo.shared.guard.Guard;
 import dgs.example.demo.shared.guard.Role;
@@ -25,7 +25,7 @@ import java.util.Optional;
 public class ShowsDataFetcher {
 
     private static final Logger log = LoggerFactory.getLogger(ShowsDataFetcher.class);
-    
+
     @Autowired
     private ShowRepository showRepository;
 
@@ -42,7 +42,8 @@ public class ShowsDataFetcher {
                 return showRepository.findAll();
             }
         } catch (Exception err) {
-            throw new ServerException("An error has occurred");
+            log.error(err.getMessage());
+            throw new ServerException("An error has occurred", err.getMessage());
         }
     }
 
@@ -58,7 +59,8 @@ public class ShowsDataFetcher {
 
             return result;
         } catch (Exception err) {
-            throw new ServerException("An error has occurred");
+            log.error(err.getMessage());
+            throw new ServerException("An error has occurred", err.getMessage());
         }
     }
 
@@ -73,7 +75,8 @@ public class ShowsDataFetcher {
                 return new DeleteShowResult(false, "This show doesn't exist");
             }
         } catch (Exception err) {
-            throw new ServerException("An error has occurred");
+            log.error(err.getMessage());
+            throw new ServerException("An error has occurred", err.getMessage());
         }
     }
 }

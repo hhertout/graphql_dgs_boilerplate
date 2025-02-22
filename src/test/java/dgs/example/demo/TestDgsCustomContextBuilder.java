@@ -1,7 +1,7 @@
 package dgs.example.demo;
 
 import com.netflix.graphql.dgs.context.DgsCustomContextBuilder;
-import dgs.example.demo.shared.context.GraphqlContext;
+import dgs.example.demo.application.context.GraphqlContext;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

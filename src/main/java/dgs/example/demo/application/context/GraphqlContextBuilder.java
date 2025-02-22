@@ -1,4 +1,4 @@
-package dgs.example.demo.shared.context;
+package dgs.example.demo.application.context;
 
 import com.netflix.graphql.dgs.context.DgsCustomContextBuilderWithRequest;
 import dgs.example.demo.shared.exception.ForbiddenException;

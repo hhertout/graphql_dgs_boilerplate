@@ -43,7 +43,7 @@ public class ShowsDataFetcher {
             }
         } catch (Exception err) {
             log.error(err.getMessage());
-            throw new ServerException("An error has occurred", err.getMessage());
+            throw new ServerException("An error has occurred", Optional.ofNullable(err.getMessage()));
         }
     }
 
@@ -60,7 +60,7 @@ public class ShowsDataFetcher {
             return result;
         } catch (Exception err) {
             log.error(err.getMessage());
-            throw new ServerException("An error has occurred", err.getMessage());
+            throw new ServerException("An error has occurred", Optional.ofNullable(err.getMessage()));
         }
     }
 
@@ -76,7 +76,7 @@ public class ShowsDataFetcher {
             }
         } catch (Exception err) {
             log.error(err.getMessage());
-            throw new ServerException("An error has occurred", err.getMessage());
+            throw new ServerException("An error has occurred", Optional.ofNullable(err.getMessage()));
         }
     }
 }

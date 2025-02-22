@@ -20,16 +20,14 @@ public class GraphqlContextBuilder implements DgsCustomContextBuilderWithRequest
         if (headers != null) {
             String headerApiKey = headers.getFirst("x-api-key");
 
-            System.out.println("AUTH HEADER = " + headers.getFirst("authorization"));
-
             if (headerApiKey == null || !headerApiKey.equals(API_KEY)) {
-                throw new ForbiddenException("API KEY IS NOT VALID");
+                throw new ForbiddenException("API KEY IS NOT VALID", null);
             }
 
             String authHeader = headers.getFirst("authorization");
             return new GraphqlContext(Optional.ofNullable(authHeader));
         } else {
-            throw new ForbiddenException("INVALID OPERATION");
+            throw new ForbiddenException("INVALID OPERATION", null);
         }
     }
 }

@@ -7,9 +7,10 @@ import java.util.Optional;
 
 public class Guard {
     public static void checkAuthorization(Optional<String> token, Role... roles) throws UnauthorizedException {
-        if (!tokenIsValid(token)) throw new UnauthorizedException("Unauthorized");
+        if (!tokenIsValid(token)) throw new UnauthorizedException("Unauthorized", Optional.of("auth token is empty"));
         Role userRole = getRole();
-        if (!Arrays.asList(roles).contains(userRole)) throw new UnauthorizedException("Unauthorized");
+        if (!Arrays.asList(roles).contains(userRole))
+            throw new UnauthorizedException("Unauthorized", Optional.of("auth token is invalid"));
     }
 
     private static boolean tokenIsValid(Optional<String> token) {

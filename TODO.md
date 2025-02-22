@@ -1,10 +1,13 @@
 # TODO
 
 - [x] Base API
-- [x] ORM & DB initialization
 - [x] Query resolver
 - [x] Mutation Resolver
-- [ ] Authentication gesture
 - [x] Context gesture
-- [ ] Deployment pipeline
+- [x] ORM & DB initialization
+- [x] Guard utility class
+- [x] Deployment pipeline on GitHub
+- [x] Docker integration
+- [ ] Better error handling
+- [ ] K8S files
 - [ ] More deep dive into DGS framework
